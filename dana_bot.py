@@ -114,7 +114,7 @@ def login(page, no, pin):
 	# End Submit
 
 	# Logging In
-	inputPin 		= check_element(driver, '//div[@class="digital-password bordered"]', 0.5)
+	inputPin 		= check_element(driver, '//div[@class="digital-password bordered"]', 1)
 	if inputPin:
 		print("[*] PIN Input OK!")
 		input_pin(pin)
@@ -130,7 +130,7 @@ def login(page, no, pin):
 		print("[*] Wrong PIN {} | {}".format(no, pin))
 		driver_exit(driver)
 
-	otpCheck 		= check_element(driver, '//div[@id="risk-otp"', 0.5)
+	otpCheck 		= check_element(driver, '//input[@type="tel"', 1)
 	if otpCheck:
 		print("[*] OTP After Login => {} | {}".format(no, pin))
 		login(page, no, pin)
