@@ -10,7 +10,7 @@ import os
 import signal
 
 def refresh():
-	pyautogui.keyDown('command'); pyautogui.press('r'); pyautogui.keyUp('command')
+	pyautogui.keyDown('ctrl'); pyautogui.press('r'); pyautogui.keyUp('ctrl')
 
 def get_pid(driver):
     chromepid = int(driver.service.process.pid)
