@@ -9,6 +9,7 @@ import pyautogui
 import os
 import signal
 
+pyautogui.FAILSAFE = False
 def refresh():
 	pyautogui.keyDown('ctrl'); pyautogui.press('r'); pyautogui.keyUp('ctrl')
 
