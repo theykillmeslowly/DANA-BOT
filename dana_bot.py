@@ -132,7 +132,7 @@ def login(page, no, pin):
 		print("\t[+] Wrong PIN {} | {}".format(no, pin))
 		driver_exit(driver)
 
-	otpCheck 		= check_element(driver, '//input[@type="tel"', 1)
+	otpCheck 		= check_element(driver, '//input[@class="password-focus txt-input-otp"', 1)
 	if otpCheck:
 		print("\t[+] OTP After Login => {} | {}".format(no, pin))
 		login(page, no, pin)
